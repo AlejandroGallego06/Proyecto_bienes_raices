@@ -2,7 +2,7 @@
 $id = $_GET['id'];
 $id = filter_var($id, FILTER_VALIDATE_INT);
 if (!$id) {
-    header('Location: /bienesraices_inicio/admin/index.php');
+    header('Location: /Proyecto_connect/admin/index.php');
 }
 
 require '../../includes/config/database.php';
@@ -117,7 +117,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($resultado) {
             //Redireccionar al usuario
 
-            header('Location: /bienesraices_inicio/admin/index.php?resultado=1');
+            header('Location: /Proyecto_connect/admin/index.php?resultado=1');
         }
     }
 
@@ -128,14 +128,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 require '../../includes/funciones.php';
-incluirTemplate('header');
+incluirTemplate('headerAdmin');
 
 ?>
 
 <main class="contenedor seccion">
     <h1>Actualizar</h1>
 
-    <a href="/bienesraices_inicio/admin/index.php" class="boton boton-verde">Volver</a>
+    <a href="/Proyecto_connect/admin/index.php" class="boton boton-verde">Volver</a>
 
     <?php foreach ($errores as $error) : ?>
         <div class="alerta error">
@@ -143,7 +143,7 @@ incluirTemplate('header');
         </div>
     <?php endforeach; ?>
 
-    <form class="formulario" method="POST" action="/bienesraices_inicio/admin/propiedades/crear.php" enctype="multipart/form-data">
+    <form class="formulario" method="POST" action="/Proyecto_connect/admin/propiedades/crear.php" enctype="multipart/form-data">
         <fieldset>
             <legend>Información General</legend>
 

@@ -24,7 +24,9 @@ incluirTemplate('header');
         <p class="alerta exito">Anuncio creado correctamente</p>
     <?php endif; ?>
 
-    <a href="/bienesraices_inicio/admin/propiedades/crear.php" class="boton boton-verde">Nueva Propiedad</a>
+    <a href="/Proyecto_connect/admin/propiedades/crear.php" class="boton boton-verde">Nueva Propiedad</a>
+
+    <a href="#" class="boton boton-verde">Mostrar/ocultar Tabla</a>
 
     <table class="propiedades">
         <thead>
