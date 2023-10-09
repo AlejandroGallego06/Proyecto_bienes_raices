@@ -21,12 +21,12 @@ incluirTemplate('header');
     <h1>Administrador de bienes raices</h1>
 
     <?php if ($resultado == 1) : ?>
-        <p class="alerta exito">Anuncio creado correctamente</p>
+        <p class="alerta exito">Anuncio Creado Correctamente</p>
+    <?php elseif ($resultado == 2) : ?>
+        <p class="alerta exito">Anuncio Actualizado Correctamente</p>
     <?php endif; ?>
 
     <a href="/Proyecto_connect/admin/propiedades/crear.php" class="boton boton-verde">Nueva Propiedad</a>
-
-    <a href="#" class="boton boton-verde">Mostrar/ocultar Tabla</a>
 
     <table class="propiedades">
         <thead>
