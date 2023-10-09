@@ -10,7 +10,7 @@
     <p class="copyrigth">Todos los derechos reservados <?php echo date('Y'); ?> &copy;</p>
 </footer>
 
-<script src="/bienesraices_inicio/build/js/bundle.min.js"></script>
+<script src="/Proyecto_connect/build/js/bundle.min.js"></script>
 </body>
 
 </html>
