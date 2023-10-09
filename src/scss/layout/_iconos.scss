@@ -1,0 +1,21 @@
+@use 'base/mixins' as m;
+
+.iconos-nosotros{
+    padding-top: 5rem;
+    display: block;
+    @include m.tablet{
+        display: flex;
+    }
+    gap: 4rem;
+}
+
+.icono{
+    text-align: center;
+    img{
+        height: 10rem;
+    }
+
+    h3{
+        text-transform: uppercase;
+    }
+}
