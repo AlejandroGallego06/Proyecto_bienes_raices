@@ -13,7 +13,7 @@
     <header class="header <?php echo $inicio ? 'inicio' : ''; ?>">
         <div class="contenedor contenido-header">
             <div class="barra">
-                <a href="index.php">
+                <a href="/Proyecto_connect/admin/index.php">
                     <img class="logo-header" src="/Proyecto_connect/build/img/logo.svg" alt="logo del sitio de bienes raices">
                 </a>
 
