@@ -14,7 +14,7 @@
         <div class="contenedor contenido-header">
             <div class="barra">
                 <a href="index.php">
-                    <img class="logo-header" src="/Proyecto_connect/build/img/logo.svg" alt="logo del sitio de bienes raices">
+                    <img class="logo-header" src="/Proyecto_connect/build/img/logo2.svg" alt="logo del sitio de bienes raices">
                 </a>
 
                 <div class="mobile-menu">

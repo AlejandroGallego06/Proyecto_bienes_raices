@@ -24,10 +24,10 @@
                 <div class="derecha">
                     <img class="boton-modo-oscuro" src="/Proyecto_connect/build/img/dark-mode.svg" alt="boton modo oscuro">
                     <nav class="navegacion">
-                        <a href="../nosotros.php">Nosotros</a>
-                        <a href="../anuncios.php">Anuncios</a>
-                        <a href="../blog.php">Blog</a>
-                        <a href="../contacto.php">Contacto</a>
+                        <a href="../../nosotros.php">Nosotros</a>
+                        <a href="../../anuncios.php">Anuncios</a>
+                        <a href="../../blog.php">Blog</a>
+                        <a href="../../contacto.php">Contacto</a>
                     </nav>
                 </div>
 

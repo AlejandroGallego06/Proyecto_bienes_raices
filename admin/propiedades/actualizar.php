@@ -137,7 +137,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 require '../../includes/funciones.php';
-incluirTemplate('headerAdmin');
+incluirTemplate('headerAdminAC');
 
 ?>
 
@@ -200,5 +200,5 @@ incluirTemplate('headerAdmin');
 </main>
 
 <?php
-incluirTemplate('footer')
+incluirTemplate('footer');
 ?><?php
