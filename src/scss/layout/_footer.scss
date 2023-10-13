@@ -1,21 +1,21 @@
-
-.footer{
-    background-color:$grisOscuro;
-    padding: calc($separacion/2) 0 1rem 0;
+.footer {
+    padding: $separacion / 2 0 ;
+    background-color: $grisOscuro;
     margin-bottom: 0;
+
+    .contenedor-footer {
+        padding-top: $separacion / 2;
+    }
+
+    .navegacion {
+        visibility: visible;
+        opacity: 1;
+        height: auto;
+    }
+
+    .copyright {
+        color: $blanco;
+        text-align: center;
+    }
 }
 
-.contenedor-footer{
-    padding-top: 2rem;
-}
-
-.navegacion{
-    visibility: visible;
-    opacity: 1;
-    height: auto;
-}
-
-.copyrigth{
-    color: $blanco;
-    text-align: center;
-}

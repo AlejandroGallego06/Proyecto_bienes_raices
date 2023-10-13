@@ -1,21 +1,15 @@
-@use 'base/mixins' as m;
-
-.iconos-nosotros{
-    padding-top: 5rem;
-    display: block;
-    @include m.tablet{
-        display: flex;
+@include tablet {
+    .iconos-nosotros {
+        @include grid(3, 2rem);
     }
-    gap: 4rem;
 }
 
-.icono{
+.icono {
     text-align: center;
-    img{
+    img {
         height: 10rem;
     }
-
-    h3{
+    h3 {
         text-transform: uppercase;
     }
 }

@@ -1,18 +1,13 @@
-@use 'base/mixins' as m;
+.contenido-nosotros {
 
-.contenido-nosotros{
-    @include tablet{
-        @include m.grid(2,2rem);
-        h4{
-            margin-top: 0rem;
-        }
+    @include tablet {
+        @include grid(2, 2rem);
     }
+}
 
-    h4{
-        color: $negro;
-    }
-
-    .imagen{
-        max-width: 75rem;
-    }
+.texto-nosotros blockquote {
+    font-weight: $black;
+    font-size: 2.2rem;
+    margin: 3rem 0 0 0;
+    padding-left: 1rem 0 3rem 0;
 }
