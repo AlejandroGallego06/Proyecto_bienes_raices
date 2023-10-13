@@ -27,7 +27,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($resultado->num_rows) {
             //Revisar si el password es correcto
+            $usuario = mysqli_fetch_assoc($resultado);
 
+            //Verificar si el password es correcto o no
+
+            $auth = password_verify($password, $usuario['password']);
+
+            if ($auth) {
+                //El usuario esta autenticado
+            } else {
+                $errores[] = "La contraseña es incorrecta";
+            }
         } else {
             $errores[] = "El Usuario no existe";
         }
