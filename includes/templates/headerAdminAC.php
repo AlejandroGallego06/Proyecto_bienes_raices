@@ -18,7 +18,7 @@
                 </a>
 
                 <div class="mobile-menu">
-                    <img src="/Proyecto_connect/build/img/barras.svg" alt="menu responsive">
+                    <img src="/bienesraices_inicio/build/img/barras.svg" alt="menu responsive">
                 </div>
 
                 <div class="derecha">

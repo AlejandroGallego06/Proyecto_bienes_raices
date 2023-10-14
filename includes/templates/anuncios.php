@@ -1,20 +1,20 @@
-<?php 
-    // Importar la conexión
-    require __DIR__ . '/../config/database.php';
-    $db = conectarDB();
+<?php
+// Importar la conexión
+require __DIR__ . '/../config/database.php';
+$db = conectarDB();
 
 
-    // consultar
-    $query = "SELECT * FROM propiedades LIMIT ${limite}";
+// consultar
+$query = "SELECT * FROM propiedades LIMIT {$limite}";
 
-    // obtener resultado
-    $resultado = mysqli_query($db, $query);
+// obtener resultado
+$resultado = mysqli_query($db, $query);
 
 
 ?>
 
 <div class="contenedor-anuncios">
-        <?php while($propiedad = mysqli_fetch_assoc($resultado)): ?>
+    <?php while ($propiedad = mysqli_fetch_assoc($resultado)) : ?>
         <div class="anuncio">
 
             <img loading="lazy" src="/imagenes/<?php echo $propiedad['imagen']; ?>" alt="anuncio">
@@ -44,11 +44,11 @@
                 </a>
             </div><!--.contenido-anuncio-->
         </div><!--anuncio-->
-        <?php endwhile; ?>
-    </div> <!--.contenedor-anuncios-->
+    <?php endwhile; ?>
+</div> <!--.contenedor-anuncios-->
 
-<?php 
+<?php
 
-    // Cerrar la conexión
-    mysqli_close($db);
+// Cerrar la conexión
+mysqli_close($db);
 ?>
