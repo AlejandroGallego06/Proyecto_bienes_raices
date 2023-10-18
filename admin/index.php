@@ -4,7 +4,7 @@ require '../includes/funciones.php';
 $auth = estaAutenticado();
 
 if (!$auth) {
-    header('Location: /');
+    header('Location: /bienesraices_inicio/index.php');
 }
 
 // Importar la conexión
@@ -43,14 +43,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $resultado = mysqli_query($db, $query);
 
         if ($resultado) {
-            header('location: /admin?resultado=3');
+            header('location: /bienesraices_inicio/admin/index.php?resultado=3');
         }
     }
 }
 
 // Incluye un template
 
-incluirTemplate('header');
+incluirTemplate('headerAdmin');
 ?>
 
 <main class="contenedor seccion">
@@ -63,7 +63,7 @@ incluirTemplate('header');
         <p class="alerta exito">Anuncio Eliminado Correctamente</p>
     <?php endif; ?>
 
-    <a href="/admin/propiedades/crear.php" class="boton boton-verde">Nueva Propiedad</a>
+    <a href="/bienesraices_inicio/admin/propiedades/crear.php" class="boton boton-verde">Nueva Propiedad</a>
 
 
     <table class="propiedades">
@@ -82,7 +82,7 @@ incluirTemplate('header');
                 <tr>
                     <td><?php echo $propiedad['id']; ?></td>
                     <td><?php echo $propiedad['titulo']; ?></td>
-                    <td> <img src="/imagenes/<?php echo $propiedad['imagen']; ?>" class="imagen-tabla"> </td>
+                    <td> <img src="/bienesraices_inicio/imagenes/<?php echo $propiedad['imagen']; ?>" class="imagen-tabla"> </td>
                     <td>$ <?php echo $propiedad['precio']; ?></td>
                     <td>
                         <form method="POST" class="w-100">
@@ -92,7 +92,7 @@ incluirTemplate('header');
                             <input type="submit" class="boton-rojo-block" value="Eliminar">
                         </form>
 
-                        <a href="admin/propiedades/actualizar.php?id=<?php echo $propiedad['id']; ?>" class="boton-amarillo-block">Actualizar</a>
+                        <a href="/bienesraices_inicio/admin/propiedades/actualizar.php?id=<?php echo $propiedad['id']; ?>" class="boton-amarillo-block">Actualizar</a>
                     </td>
                 </tr>
             <?php endwhile; ?>

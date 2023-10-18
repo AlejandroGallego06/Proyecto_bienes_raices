@@ -1,6 +1,6 @@
 <?php
 // Importar la conexión
-require __DIR__ . '/../config/database.php';
+require 'includes/config/database.php';
 $db = conectarDB();
 
 
@@ -17,7 +17,7 @@ $resultado = mysqli_query($db, $query);
     <?php while ($propiedad = mysqli_fetch_assoc($resultado)) : ?>
         <div class="anuncio">
 
-            <img loading="lazy" src="/imagenes/<?php echo $propiedad['imagen']; ?>" alt="anuncio">
+            <img loading="lazy" src="/bienesraices_inicio/imagenes/<?php echo $propiedad['imagen']; ?>" alt="anuncio">
 
             <div class="contenido-anuncio">
                 <h3><?php echo $propiedad['titulo']; ?></h3>

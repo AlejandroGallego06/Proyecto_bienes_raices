@@ -1,58 +1,48 @@
 <?php
-
+//Conexion a la BD
 require 'includes/config/database.php';
 $db = conectarDB();
-// Autenticar el usuario
 
+//Autenticar el usuario
 $errores = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // echo "<pre>";
     // var_dump($_POST);
-    // echo "</pre>";
 
-    $email = mysqli_real_escape_string($db,  filter_var($_POST['email'], FILTER_VALIDATE_EMAIL));
-    $password = mysqli_real_escape_string($db,  $_POST['password']);
+    $correo = mysqli_real_escape_string($db, filter_var($_POST['correo'], FILTER_VALIDATE_EMAIL));
+    $password = mysqli_real_escape_string($db, $_POST['password']);
 
-    if (!$email) {
-        $errores[] = "El email es obligatorio o no es válido";
+    if (!$correo) {
+        $errores[] = "Debes agregar un correo o ingresaste uno invalido";
     }
 
     if (!$password) {
-        $errores[] = "El Password es obligatorio";
+        $errores[] = "La contraseña es obligatoria";
     }
 
     if (empty($errores)) {
-
-        // Revisar si el usuario existe.
-        $query = "SELECT * FROM usuarios WHERE email = '${email}' ";
+        //Revisar si el usuario existe.
+        $query = "SELECT * FROM usuarios WHERE email = '{$correo}' ;";
         $resultado = mysqli_query($db, $query);
 
-
-
-
         if ($resultado->num_rows) {
-            // Revisar si el password es correcto
+            //Revisar si el password es correcto
             $usuario = mysqli_fetch_assoc($resultado);
 
-            // var_dump($usuario['password']);
-
-            // Verificar si el password es correcto o no
+            //verificar si el password es correcto o no
 
             $auth = password_verify($password, $usuario['password']);
-
             if ($auth) {
-                // El usuario esta autenticado
+                //El usuario esta autenticado
                 session_start();
 
-                // Llenar el arreglo de la sesión
+                //Llenar el arreglo de la sesion
                 $_SESSION['usuario'] = $usuario['email'];
                 $_SESSION['login'] = true;
 
-
-                header('Location: /admin');
+                header('Location: /bienesraices_inicio/admin/index.php');
             } else {
-                $errores[] = 'El password es incorrecto';
+                $errores[] = "La contraseña es incorrecta";
             }
         } else {
             $errores[] = "El Usuario no existe";
@@ -60,15 +50,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-
-
-// Incluye el header
 require 'includes/funciones.php';
 incluirTemplate('header');
 ?>
 
 <main class="contenedor seccion contenido-centrado">
-    <h1>Iniciar Sesión</h1>
+    <h1>Iniciar sesion</h1>
 
     <?php foreach ($errores as $error) : ?>
         <div class="alerta error">
@@ -76,21 +63,21 @@ incluirTemplate('header');
         </div>
     <?php endforeach; ?>
 
-    <form method="POST" class="formulario" novalidate>
+    <form method="POST" class="formulario">
         <fieldset>
-            <legend>Email y Password</legend>
+            <legend>Email y Contraseña</legend>
 
-            <label for="email">E-mail</label>
-            <input type="email" name="email" placeholder="Tu Email" id="email">
+            <label for="correo">E-mail</label>
+            <input type="email" name="correo" placeholder="Tu Correo electronico" id="correo">
 
-            <label for="password">Password</label>
-            <input type="password" name="password" placeholder="Tu Password" id="password">
+            <label for="password">Contraseña</label>
+            <input type="password" name="password" placeholder="Tu Contraseña" id="password">
         </fieldset>
 
-        <input type="submit" value="Iniciar Sesión" class="boton boton-verde">
+        <input type="submit" value="Iniciar Sesion" class="boton-verde">
     </form>
 </main>
 
 <?php
-incluirTemplate('footer');
+incluirTemplate('footer')
 ?>

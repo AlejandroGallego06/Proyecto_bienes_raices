@@ -1,28 +1,67 @@
-<?php 
-    require 'includes/funciones.php';
-    incluirTemplate('header');
-?>
+const { src, dest, watch, series, parallel } = require('gulp');
+const sass = require('gulp-sass')(require('sass'));
+const autoprefixer = require('autoprefixer');
+const postcss = require('gulp-postcss')
+const sourcemaps = require('gulp-sourcemaps')
+const cssnano = require('cssnano');
+const concat = require('gulp-concat');
+const terser = require('gulp-terser-js');
+const rename = require('gulp-rename');
+const imagemin = require('gulp-imagemin'); // Minificar imagenes 
+const notify = require('gulp-notify');
+const cache = require('gulp-cache');
+const clean = require('gulp-clean');
+const webp = require('gulp-webp');
 
-    <main class="contenedor seccion contenido-centrado">
-        <h1>Guía para la decoración de tu hogar</h1>
+const paths = {
+    scss: 'src/scss/**/*.scss',
+    js: 'src/js/**/*.js',
+    imagenes: 'src/img/**/*'
+}
 
-   
-        <picture>
-            <source srcset="build/img/destacada2.webp" type="image/webp">
-            <source srcset="build/img/destacada2.jpg" type="image/jpeg">
-            <img loading="lazy" src="build/img/destacada2.jpg" alt="imagen de la propiedad">
-        </picture>
+function css() {
+    return src(paths.scss)
+        .pipe(sourcemaps.init())
+        .pipe(sass())
+        .pipe(postcss([autoprefixer(), cssnano()]))
+        // .pipe(postcss([autoprefixer()]))
+        .pipe(sourcemaps.write('.'))
+        .pipe(dest('build/css'));
+}
 
-        <p class="informacion-meta">Escrito el: <span>20/10/2021</span> por: <span>Admin</span> </p>
+function javascript() {
+    return src(paths.js)
+      .pipe(sourcemaps.init())
+      .pipe(concat('bundle.js'))
+      .pipe(terser())
+      .pipe(sourcemaps.write('.'))
+      .pipe(rename({ suffix: '.min' }))
+      .pipe(dest('./build/js'))
+}
+
+function imagenes() {
+    return src(paths.imagenes)
+        .pipe(cache(imagemin({ optimizationLevel: 3 })))
+        .pipe(dest('build/img'))
+        .pipe(notify({ message: 'Imagen Completada' }));
+}
+
+function versionWebp() {
+    return src(paths.imagenes)
+        .pipe(webp())
+        .pipe(dest('build/img'))
+        .pipe(notify({ message: 'Imagen Completada' }));
+}
 
 
-        <div class="resumen-propiedad">
-            <p>Proin consequat viverra sapien, malesuada tempor tortor feugiat vitae. In dictum felis et nunc aliquet molestie. Proin tristique commodo felis, sed auctor elit auctor pulvinar. Nunc porta, nibh quis convallis sollicitudin, arcu nisl semper mi, vitae sagittis lorem dolor non risus. Vivamus accumsan maximus est, eu mollis mi. Proin id nisl vel odio semper hendrerit. Nunc porta in justo finibus tempor. Suspendisse lobortis dolor quis elit suscipit molestie. Sed condimentum, erat at tempor finibus, urna nisi fermentum est, a dignissim nisi libero vel est. Donec et imperdiet augue. Curabitur malesuada sodales congue. Suspendisse potenti. Ut sit amet convallis nisi.</p>
+function watchArchivos() {
+    watch(paths.scss, css);
+    watch(paths.js, javascript);
+    watch(paths.imagenes, imagenes);
+    watch(paths.imagenes, versionWebp);
+}
 
-            <p>Aliquam lectus magna, luctus vel gravida nec, iaculis ut augue. Praesent ac enim lorem. Quisque ac dignissim sem, non condimentum orci. Morbi a iaculis neque, ac euismod felis. Fusce augue quam, fermentum sed turpis nec, hendrerit dapibus ante. Cras mattis laoreet nibh, quis tincidunt odio fermentum vel. Nulla facilisi.</p>
-        </div>
-    </main>
 
-<?php 
-    incluirTemplate('footer');
-?>
+exports.css = css;
+exports.watchArchivos = watchArchivos;
+exports.default = parallel(css, javascript, watchArchivos); 

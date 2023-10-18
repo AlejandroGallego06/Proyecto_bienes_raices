@@ -4,7 +4,7 @@ require '../../includes/funciones.php';
 $auth = estaAutenticado();
 
 if (!$auth) {
-    header('Location: /');
+    header('Location: /bienesraices_inicio/index.php');
 }
 
 // Validar la URL por ID válido
@@ -38,7 +38,7 @@ $descripcion = $propiedad['descripcion'];
 $habitaciones = $propiedad['habitaciones'];
 $wc = $propiedad['wc'];
 $estacionamiento = $propiedad['estacionamiento'];
-$vendedorId = $propiedad['vendedorId'];
+$vendedorId = $propiedad['vendedores_id'];
 $imagenPropiedad = $propiedad['imagen'];
 
 // Ejecutar el código después de que el usuario envia el formulario
@@ -135,26 +135,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         // Insertar en la base de datos
-        $query = " UPDATE propiedades SET titulo = '{$titulo}', precio = '{$precio}', imagen = '{$nombreImagen}', descripcion = '{$descripcion}', habitaciones = {$habitaciones}, wc = {$wc}, estacionamiento = {$estacionamiento}, vendedorId = {$vendedorId} WHERE id = {$id} ";
+        $query = " UPDATE propiedades SET titulo = '{$titulo}', precio = '{$precio}', imagen = '{$nombreImagen}', descripcion = '{$descripcion}', habitaciones = {$habitaciones}, wc = {$wc}, estacionamiento = {$estacionamiento}, vendedores_Id = {$vendedorId} WHERE id = {$id} ";
 
         $resultado = mysqli_query($db, $query);
 
         if ($resultado) {
             // Redireccionar al usuario.
-            header('Location: /admin?resultado=2');
+            header('Location: /bienesraices_inicio/admin/index.php?resultado=2');
         }
     }
 }
 
 
 
-incluirTemplate('header');
+incluirTemplate('headerAdminAC');
 ?>
 
 <main class="contenedor seccion">
     <h1>Actualizar Propiedad</h1>
 
-    <a href="/admin" class="boton boton-verde">Volver</a>
+    <a href="/bienesraices_inicio/admin/index.php" class="boton boton-verde">Volver</a>
 
     <?php foreach ($errores as $error) : ?>
         <div class="alerta error">
@@ -175,7 +175,7 @@ incluirTemplate('header');
             <label for="imagen">Imagen:</label>
             <input type="file" id="imagen" accept="image/jpeg, image/png" name="imagen">
 
-            <img src="/imagenes/<?php echo $imagenPropiedad; ?>" class="imagen-small">
+            <img src="/bienesraices_inicio/imagenes/<?php echo $imagenPropiedad; ?>" class="imagen-small">
 
             <label for="descripcion">Descripción:</label>
             <textarea id="descripcion" name="descripcion"><?php echo $descripcion; ?></textarea>
