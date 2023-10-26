@@ -1,14 +1,8 @@
 <?php
 
-require '../includes/funciones.php';
-$auth = estaAutenticado();
+require '../includes/app.php';
+estaAutenticado();
 
-if (!$auth) {
-    header('Location: /bienesraices_inicio/index.php');
-}
-
-// Importar la conexión
-require '../includes/config/database.php';
 $db = conectarDB();
 
 // Escribir el Query

@@ -7,8 +7,8 @@ if (!$id) {
     header('Location: /Proyecto_connect/index.php');
 }
 
-//Importar la conexio
-require 'includes/config/database.php';
+require 'includes/app.php';
+
 $db = conectarDB();
 
 //Consultar
@@ -18,7 +18,7 @@ $query = "SELECT * FROM propiedades WHERE id= {$id}";
 $resultado = mysqli_query($db, $query);
 $propiedad = mysqli_fetch_assoc($resultado);
 
-require 'includes/funciones.php';
+
 incluirTemplate('header');
 ?>
 

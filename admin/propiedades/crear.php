@@ -1,14 +1,11 @@
 <?php
 
-require '../../includes/funciones.php';
-$auth = estaAutenticado();
+require '../../includes/app.php';
 
-if (!$auth) {
-    header('Location: /bienesraices_inicio/index.php');
-}
+use App\Propiedad;
 
-// Base de datos
-require '../../includes/config/database.php';
+estaAutenticado();
+
 $db = conectarDB();
 
 // Consultar para obtener los vendedores
@@ -28,6 +25,10 @@ $vendedorId = '';
 
 // Ejecutar el código después de que el usuario envia el formulario
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    $propiedad = new Propiedad($_POST);
+
+    $propiedad->guardar();
 
     // echo "<pre>";
     // var_dump($_POST);
@@ -184,7 +185,7 @@ incluirTemplate('headerAdminAC');
         <fieldset>
             <legend>Vendedor</legend>
 
-            <select name="vendedor">
+            <select name="vendedores_id">
                 <option value="">-- Seleccione --</option>
                 <?php while ($vendedor =  mysqli_fetch_assoc($resultado)) : ?>
                     <option <?php echo $vendedorId === $vendedor['id'] ? 'selected' : ''; ?> value="<?php echo $vendedor['id']; ?>"> <?php echo $vendedor['nombre'] . " " . $vendedor['apellido']; ?> </option>
