@@ -119,10 +119,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Subir la imagen
         move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . $nombreImagen);
 
-
-        // Insertar en la base de datos
-        $query = " INSERT INTO propiedades (titulo, precio, imagen, descripcion, habitaciones, wc, estacionamiento, creado, vendedores_id ) VALUES ( '$titulo', '$precio', '$nombreImagen', '$descripcion', '$habitaciones', '$wc', '$estacionamiento', '$creado', '$vendedorId' ) ";
-
         // echo $query;
 
         $resultado = mysqli_query($db, $query);
@@ -185,7 +181,7 @@ incluirTemplate('headerAdminAC');
         <fieldset>
             <legend>Vendedor</legend>
 
-            <select name="vendedores_id">
+            <select name="vendedor">
                 <option value="">-- Seleccione --</option>
                 <?php while ($vendedor =  mysqli_fetch_assoc($resultado)) : ?>
                     <option <?php echo $vendedorId === $vendedor['id'] ? 'selected' : ''; ?> value="<?php echo $vendedor['id']; ?>"> <?php echo $vendedor['nombre'] . " " . $vendedor['apellido']; ?> </option>
